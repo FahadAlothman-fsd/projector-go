@@ -15,6 +15,13 @@ type Projector struct {
 	data   Data
 }
 
+func CreateProjector(config *Config, data *Data) *Projector {
+	return &Projector{
+		config: *config,
+		data:   *data,
+	}
+}
+
 func (proj *Projector) GetValue(key string) (string, bool) {
 
 	curr := proj.config.Pwd
@@ -65,7 +72,7 @@ func (proj *Projector) GetValueAll(key string, value string) map[string]string {
 	return out
 }
 
-func (proj *Projector) setValue(key, value string) {
+func (proj *Projector) SetValue(key, value string) {
 	pwd := proj.config.Pwd
 	if _, ok := proj.data.Projector[pwd]; !ok {
 		proj.data.Projector[pwd] = map[string]string{}
