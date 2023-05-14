@@ -4,15 +4,15 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/FahadAlothman-fsd/projector-go/pkg/cli"
+	"github.com/FahadAlothman-fsd/projector-go/pkg/projector"
 )
 
 func main() {
-	opts, err := cli.GetOpts()
+	opts, err := projector.GetOpts()
 	if err != nil {
 		log.Fatalf("unable to get opts %v", err)
 	}
-	config, err := cli.NewConfig(opts)
+	config, err := projector.NewConfig(opts)
 	if err != nil {
 		log.Fatalf("unable to get config %v\n", err)
 	}

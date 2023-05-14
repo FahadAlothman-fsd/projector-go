@@ -1,14 +1,14 @@
-package cli_test
+package projector_test
 
 import (
 	"reflect"
 	"testing"
 
-	"github.com/FahadAlothman-fsd/projector-go/pkg/cli"
+	"github.com/FahadAlothman-fsd/projector-go/pkg/projector"
 )
 
-func getOpts(args []string) *cli.Opts {
-	opts := &cli.Opts{
+func getOpts(args []string) *projector.Opts {
+	opts := &projector.Opts{
 		Args:   args,
 		Config: "",
 		Pwd:    "",
@@ -16,10 +16,11 @@ func getOpts(args []string) *cli.Opts {
 	return opts
 }
 
-func testConfig(t *testing.T, args []string, expectedArgs []string, operation cli.Operation) {
+func testConfig(t *testing.T, args []string, expectedArgs []string, operation projector.Operation) {
+
 	opts := getOpts(args)
 
-	config, err := cli.NewConfig(opts)
+	config, err := projector.NewConfig(opts)
 	if err != nil {
 		t.Errorf("expected to get no error %+v", err)
 	}
@@ -31,20 +32,20 @@ func testConfig(t *testing.T, args []string, expectedArgs []string, operation cl
 	}
 }
 func TestConfigPrint(t *testing.T) {
-	testConfig(t, []string{}, []string{}, cli.Print)
+	testConfig(t, []string{}, []string{}, projector.Print)
 }
 
 func TestConfigPrintKey(t *testing.T) {
-	testConfig(t, []string{"baba"}, []string{"baba"}, cli.Print)
+	testConfig(t, []string{"baba"}, []string{"baba"}, projector.Print)
 
 }
 
 func TestConfigAddKeyValue(t *testing.T) {
-	testConfig(t, []string{"add", "baba", "baz"}, []string{"baba", "baz"}, cli.Add)
+	testConfig(t, []string{"add", "baba", "baz"}, []string{"baba", "baz"}, projector.Add)
 
 }
 
 func TestConfigRemoveKey(t *testing.T) {
-	testConfig(t, []string{"rmv", "baba"}, []string{"baba"}, cli.Remove)
+	testConfig(t, []string{"rmv", "baba"}, []string{"baba"}, projector.Remove)
 
 }

@@ -1,4 +1,4 @@
-package cli
+package projector
 
 import (
 	"fmt"
